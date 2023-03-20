@@ -52,14 +52,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <?php
-    foreach($hotels as $value){
-        foreach($value as $key => $hotel){
-            echo $hotel . '<br>';
-        }
-    }
-    ?>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Parking</th>
+                    <th>Vote</th>
+                    <th>Distance To Center</th>
+                </tr>
+           </thead> 
+           <tbody>
+                <?php
+                foreach($hotels as $value){
+                    ?>
+                    <tr>
+                    <?php
+                    foreach($value as $key => $hotel){
+                        ?> 
+                        <td><?php echo $hotel ?></th>
+                        <?php
+                    }
+                    ?>
+                    </tr>
+                    <?php
+                }
+                ?>
+           </tbody>
+        </table>
+    </div>
 </body>
 </html>

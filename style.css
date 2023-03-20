@@ -1,0 +1,25 @@
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+table{
+    width: 100%;
+}
+
+th{
+    font-size: 20px;
+}
+
+tr{
+    font-size: 18px;
+}
+
+th, td{
+    padding: 5px;
+    text-align: center;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
