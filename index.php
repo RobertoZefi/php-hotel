@@ -40,7 +40,8 @@
 
     ];
 
-    $select_Options = $_GET['parking'];
+    $select_Options = isset($_GET['parking']) ? $_GET['parking'] : null;
+    //$select_Options = $_GET['parking'];
     var_dump($select_Options);
 
 ?>
@@ -59,10 +60,11 @@
     <div class="container">
 
         <form action="" method="GET">
-            <select name="parking" id="">
+            <select name="parking">
                 <option value="1">View All</option>
                 <option value="2">With Parking</option>
             </select>
+            <button type="submit">Invia</button>
         </form>
 
         <table>
@@ -70,25 +72,36 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Parking</th>
                     <th>Vote</th>
                     <th>Distance To Center</th>
                 </tr>
            </thead> 
            <tbody>
                 <?php
-                foreach($hotels as $value){
-                    ?>
-                    <tr>
-                    <?php
-                    foreach($value as $key => $hotel){
-                        ?> 
-                        <td><?php echo $hotel ?></th>
+                if($select_Options == 1 || $select_Options == null){
+                    foreach($hotels as $value){
+                        ?>
+                        <tr>
+                        <td><?php echo $value['name']; ?></th>
+                        <td><?php echo $value['description']; ?></th>
+                        <td><?php echo $value['vote']; ?></th>
+                        <td><?php echo $value['distance_to_center']; ?></th>
+                        </tr>
                         <?php
                     }
-                    ?>
-                    </tr>
-                    <?php
+                } elseif ($select_Options == 2){
+                    foreach($hotels as $value){
+                        if($value['parking'] == true){
+                            ?>
+                            <tr>
+                            <td><?php echo $value['name']; ?></th>
+                            <td><?php echo $value['description']; ?></th>
+                            <td><?php echo $value['vote']; ?></th>
+                            <td><?php echo $value['distance_to_center']; ?></th>
+                            </tr>
+                            <?php
+                        }
+                    }
                 }
                 ?>
            </tbody>
