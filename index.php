@@ -40,7 +40,8 @@
 
     ];
 
-
+    $select_Options = $_GET['parking'];
+    var_dump($select_Options);
 
 ?>
 
@@ -56,6 +57,14 @@
 </head>
 <body>
     <div class="container">
+
+        <form action="" method="GET">
+            <select name="parking" id="">
+                <option value="1">View All</option>
+                <option value="2">With Parking</option>
+            </select>
+        </form>
+
         <table>
             <thead>
                 <tr>
