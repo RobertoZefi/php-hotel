@@ -41,8 +41,8 @@
     ];
 
     $select_Options = isset($_GET['parking']) ? $_GET['parking'] : null;
-    //$select_Options = $_GET['parking'];
-    var_dump($select_Options);
+
+    $select_Vote = isset($_GET['vote']) ? $_GET['vote'] : null;
 
 ?>
 
@@ -64,6 +64,16 @@
                 <option value="1">View All</option>
                 <option value="2">With Parking</option>
             </select>
+
+            <select name="vote">
+                <option value="">-- Vote --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
             <button type="submit">Invia</button>
         </form>
 
@@ -80,18 +90,20 @@
                 <?php
                 if($select_Options == 1 || $select_Options == null){
                     foreach($hotels as $value){
-                        ?>
-                        <tr>
-                        <td><?php echo $value['name']; ?></th>
-                        <td><?php echo $value['description']; ?></th>
-                        <td><?php echo $value['vote']; ?></th>
-                        <td><?php echo $value['distance_to_center']; ?></th>
-                        </tr>
-                        <?php
+                        if($value['vote'] >= $select_Vote){
+                            ?>
+                            <tr>
+                            <td><?php echo $value['name']; ?></th>
+                            <td><?php echo $value['description']; ?></th>
+                            <td><?php echo $value['vote']; ?></th>
+                            <td><?php echo $value['distance_to_center']; ?></th>
+                            </tr>
+                            <?php
+                        }
                     }
                 } elseif ($select_Options == 2){
                     foreach($hotels as $value){
-                        if($value['parking'] == true){
+                        if($value['parking'] == true && $value['vote'] >= $select_Vote){
                             ?>
                             <tr>
                             <td><?php echo $value['name']; ?></th>
